@@ -10,6 +10,10 @@ The MV7 doesn't report its mute state correctly, so this Spoon tracks the state 
 - **Latch/momentary hotkey** — Quick press toggles mute. Hold and release for push-to-talk (momentary unmute/mute).
 - **App sync** — Optionally syncs mute/unmute with Zoom and Microsoft Teams if they're running.
 
+## Requirements
+
+- [Hammerspoon](https://www.hammerspoon.org/) installed on macOS
+
 ## Installation
 
 Copy `MicMute.spoon` to `~/.hammerspoon/Spoons/`.
