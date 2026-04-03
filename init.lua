@@ -38,10 +38,16 @@ obj.timeSinceMute = 0
 --- Method
 --- Updates the menubar title to reflect the current mute state.
 function obj:updateMenu()
+    local red = { red = 255/255, green = 96/255, blue = 93/255 }
+    local green = { red = 0/255, green = 255/255, blue = 24/255 }
+    local black = { red = 0, green = 0, blue = 0 }
+    local pad = " "
     if self.muted then
-        self.menu:setTitle("🟥 Mic off")
+        local style = { font = { name = ".AppleSystemUIFontBold" }, backgroundColor = red, color = black, kerning = 0 }
+        self.menu:setTitle(hs.styledtext.new(pad .. "Muted" .. pad, style))
     else
-        self.menu:setTitle("🟢 Mic on")
+        local style = { font = { name = ".AppleSystemUIFontBold" }, backgroundColor = green, color = black, kerning = 0 }
+        self.menu:setTitle(hs.styledtext.new(pad .. "ON" .. pad, style))
     end
 end
 
