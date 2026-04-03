@@ -6,7 +6,7 @@ The MV7 doesn't report its mute state correctly, so this Spoon tracks the state 
 
 ## Features
 
-- **Menubar indicator** — Shows mic on/off status in the macOS menu bar. Click to toggle.
+- **Menubar indicator** — Shows "Muted" (red) or "ON" (green) in the macOS menu bar. Click to toggle.
 - **Latch/momentary hotkey** — Quick press toggles mute. Hold and release for push-to-talk (momentary unmute/mute).
 - **App sync** — Optionally syncs mute/unmute with Zoom and Microsoft Teams if they're running.
 
