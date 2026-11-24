@@ -34,6 +34,15 @@ obj.hotkey = nil
 --- Epoch timestamp of the last mute toggle, used to distinguish latch vs momentary press.
 obj.timeSinceMute = 0
 
+-- Returns the first running app matching any of the given bundle IDs, or nil.
+local function runningByBundleID(bundleIDs)
+    for _, id in ipairs(bundleIDs) do
+        local apps = hs.application.applicationsForBundleID(id)
+        if apps and apps[1] then return apps[1] end
+    end
+    return nil
+end
+
 --- MicMute:updateMenu()
 --- Method
 --- Updates the menubar title to reflect the current mute state.
@@ -62,8 +71,10 @@ function obj:toggle()
         mic:setInputMuted(self.muted)
         self:updateMenu()
 
-        local zoom = hs.application.get("Zoom")
-        local teams = hs.application.find("com.microsoft.teams")
+        -- Exact bundle-ID lookups. hs.application.get("Zoom") / find("com.microsoft.teams")
+        -- do a name search that blocked the main thread ~4.5s each.
+        local zoom = runningByBundleID({ "us.zoom.xos" })
+        local teams = runningByBundleID({ "com.microsoft.teams2", "com.microsoft.teams" })
 
         if self.muted then
             if zoom then zoom:selectMenuItem("Mute Audio") end
